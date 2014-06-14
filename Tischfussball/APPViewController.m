@@ -43,6 +43,12 @@ NSTimer *timer;
     [self setTimerButtonTitle]; // Anzeige aufdatieren.
 }
 
+- (IBAction)Stop:(id)sender {
+    // Memory Leak? TODO: Investigate
+    if (timer != nil) [timer invalidate];
+    timer=nil;
+}
+
 -(void) tick {
     timeTick--;
     if (timeTick == 0) {
